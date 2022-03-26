@@ -1,4 +1,6 @@
+import 'package:billi/modules/museum_home_page/museum_home_page.dart';
 import 'package:billi/modules/model_check/model_ui.dart';
+
 import 'package:billi/modules/qr_scanner/qr_scanner.dart';
 import 'package:billi/modules/user_ticket_page/user_ticket.dart';
 import 'package:billi/modules/user_home_page/user_home_page.dart';
@@ -62,6 +64,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+
         home: stream);
     final builder = FutureBuilder(
       builder: (ctx, snap) {

@@ -39,16 +39,27 @@ class MyApp extends StatelessWidget {
             child: Text("signed in"),
           );
         }
-
         return IntroScreen();
       },
     );
     // TODO : Add offline check with sharedpref.. if offline, then just direct to
-    return MaterialApp(
+    final app = MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
         home: stream);
+    return FutureBuilder(
+      builder: (ctx, snap) {
+        if (snap.connectionState == ConnectionState.done)
+          return app;
+        else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
+      future: Firebase.initializeApp(),
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:billi/configs/palette.dart';
-import 'package:billi/widgets/show_ticket.dart';
+import 'package:billi/modules/user_log_in_page/user_log_in_page.dart';
+import 'package:billi/modules/user_register_page/user_register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -115,7 +116,12 @@ class _IntroScreenState extends State<IntroScreen> {
                 width: 300,
                 height: 40,
                 title: 'Login',
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UserLoginPage()),
+                  );
+                },
               ),
               const SizedBox(
                 height: 10,
@@ -124,7 +130,12 @@ class _IntroScreenState extends State<IntroScreen> {
                 width: 300,
                 height: 40,
                 title: 'Register',
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UserRegisterPage()),
+                  );
+                },
               ),
             ],
           ),

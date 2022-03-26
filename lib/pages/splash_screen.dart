@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
 
 import 'dart:async';
@@ -21,7 +20,7 @@ class SplashScreen extends StatefulWidget {
   SplashScreen({Key? key}) : super(key: key);
 
   @override
-  State< SplashScreen> createState() => _SplashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
@@ -29,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Timer(
         const Duration(seconds: 2),
-            () => Navigator.pushReplacement(context,
+        () => Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const IntroScreen())));
     super.initState();
   }
@@ -46,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               Padding(
                 padding:
-                const EdgeInsets.symmetric(vertical: 30.0, horizontal: 8.0),
+                    const EdgeInsets.symmetric(vertical: 30.0, horizontal: 8.0),
                 child: Image.asset(
                   "assets/logo/logo.png",
                   width: 100.0,
@@ -54,43 +53,39 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               Center(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Bill - i',
-                      style: TextStyle(
-                        fontSize: 50,
-                        fontFamily: "Allura",
-                        fontWeight: FontWeight.w500,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Bill - i',
+                        style: TextStyle(
+                          fontSize: 50,
+                          fontFamily: "Allura",
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'e-tickets for all your excursions! ',
-                      style: TextStyle(
-                        fontSize: 15,
+                      SizedBox(
+                        height: 10,
                       ),
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Image.asset(
-                      "assets/logo/splash.png",
-                      width: 300,
-                      height: 300,
-                    ),
-
-                      ]),
-                    ),
-                  ],
-                ),
+                      Text(
+                        'E-tickets for all your excursions! ',
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Image.asset(
+                        "assets/logo/splash.png",
+                        width: 300,
+                        height: 300,
+                      ),
+                    ]),
               ),
+            ],
           ),
-        );
+        ),
+      ),
+    );
   }
-
-
 }

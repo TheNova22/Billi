@@ -45,6 +45,9 @@ dependencies:
   curved_navigation_bar: ^1.0.3
   carousel_slider: ^4.0.0
   shared_preferences: ^2.0.13
+  camera: ^0.9.4+17
+  tflite: ^1.1.2
+  connectivity_plus: ^2.2.1
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +71,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/
     - assets/logo/
     - assets/images/
 

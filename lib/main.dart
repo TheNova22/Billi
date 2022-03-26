@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: stream);
+        home: UserTicketPage());
     final builder = FutureBuilder(
       builder: (ctx, snap) {
         if (snap.connectionState == ConnectionState.done) {

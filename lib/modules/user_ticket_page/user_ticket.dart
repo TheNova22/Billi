@@ -88,15 +88,15 @@ class _UserTicketPageState extends State<UserTicketPage> {
             "\n" +
             deets["slotBooked"];
         return TicketCard(
-          name: name,
-          email: email,
-          museumName: muses[indexes[i]],
-          data: datas[indexes[i]],
-          time: date,
-          entrants: 5,
-          souvenirs: 8,
-          price: prices[indexes[i]],
-        );
+            name: name,
+            email: email,
+            museumName: muses[indexes[i]],
+            data: datas[indexes[i]],
+            time: date,
+            entrants: 5,
+            souvenirs: 8,
+            price: prices[indexes[i]],
+            f: key == "key2");
       },
     );
   }

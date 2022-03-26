@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MuseumRegisterPage extends StatefulWidget {
   MuseumRegisterPage({Key? key}) : super(key: key);
@@ -76,6 +77,8 @@ class _MuseumRegisterPageState extends State<MuseumRegisterPage> {
           'imageUrls': [""]
         });
       });
+      final pref = await SharedPreferences.getInstance();
+      pref.setBool('loggedIn', true);
       Navigator.of(context).pop();
     } on PlatformException catch (error) {
       var message = "Something's wrong";

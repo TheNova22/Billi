@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
 
 import 'dart:developer';
-import 'dart:ui';
 
 import 'package:billi/modules/museum_register_page/museum_register_page.dart';
 import 'package:billi/modules/staff_register_page/staff_register_page.dart';
@@ -11,6 +10,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../main.dart';
 import '../../widgets/custom_text_button.dart';
@@ -32,6 +32,8 @@ class _UserLoginPageState extends State<UserLoginPage> {
     try {
       final res = await auth.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
+      final pref = await SharedPreferences.getInstance();
+      pref.setBool('loggedIn', true);
     } on PlatformException catch (error) {
       var message = "Incorrect Username or Password";
       if (error.message != null) {

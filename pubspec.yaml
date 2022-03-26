@@ -47,6 +47,7 @@ dependencies:
   shared_preferences: ^2.0.13
   camera: ^0.9.4+17
   tflite: ^1.1.2
+  connectivity_plus: ^2.2.1
 
 dev_dependencies:
   flutter_test:

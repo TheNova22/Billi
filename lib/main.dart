@@ -48,6 +48,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    FirebaseAuth.instance.signOut();
     final stream = StreamBuilder(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (ctx, snapshot) {
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 }
+                print(FirebaseAuth.instance.currentUser!.uid);
                 if ((snapshot.data as DocumentSnapshot).exists) {
                   return MuseumHomePage();
                 }

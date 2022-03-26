@@ -16,7 +16,7 @@ class OperationWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 0.0),
       child: InkWell(
         onTap: () => {
-          Navigator.pushReplacement(context,
+          Navigator.push(context,
               MaterialPageRoute(builder: (context) => const AssignRoles()))
         },
         child: SizedBox(

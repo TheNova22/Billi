@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "125327104449",
+    "project_id": "bill-i",
+    "storage_bucket": "bill-i.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125327104449:android:eeac339d7faa744b243740",
+        "android_client_info": {
+          "package_name": "com.cantin.bill_i"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "125327104449-6u4l8i2q9eql2870iil1e2fpfnsfi3i0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCl4oVek_F35522rmOf16gOutRNYAUj3m4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "125327104449-6u4l8i2q9eql2870iil1e2fpfnsfi3i0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "125327104449-9qdqf674qau381g3fde75tghkk8jhe0o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cantin.bill-i"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

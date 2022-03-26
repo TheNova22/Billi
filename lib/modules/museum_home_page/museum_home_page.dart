@@ -3,6 +3,7 @@
 import 'dart:developer';
 
 import '../assign_roles/assign_roles.dart';
+import '../qr_scanner/qr_scanner.dart';
 import 'components/operation_widget.dart';
 
 import '../../configs/palette.dart';
@@ -396,7 +397,7 @@ class _MuseumHomePageState extends State<MuseumHomePage> {
                     // TODO: SHOULD ADD ROUTES
                     InkWell(
                       onTap: () => {
-                        Navigator.pushReplacement(
+                        Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const AssignRoles()))
@@ -405,13 +406,21 @@ class _MuseumHomePageState extends State<MuseumHomePage> {
                           icon: Icons.person_add_alt_1_outlined,
                           title: 'Assign roles'),
                     ),
-                    OperationWidget(
-                        icon: Icons.qr_code_scanner, title: 'Scan ticket'),
+                    InkWell(
+                      onTap: () => {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => QRScanner()))
+                      },
+                      child: OperationWidget(
+                          icon: Icons.qr_code_scanner, title: 'Scan ticket'),
+                    ),
                     OperationWidget(
                         icon: Icons.attach_money, title: 'Update Prices'),
                     InkWell(
                       onTap: () => {
-                        Navigator.pushReplacement(
+                        Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const LogPage()))

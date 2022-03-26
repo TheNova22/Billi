@@ -1,20 +1,36 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:billi/configs/palette.dart';
 import 'package:billi/widgets/show_ticket.dart';
 import 'package:flutter/material.dart';
 
 class TicketCard extends StatelessWidget {
-  const TicketCard({Key? key}) : super(key: key);
+  const TicketCard({
+    Key? key,
+    this.name = "Robert Samuel",
+    this.email = "robertsamuel@gmail.com",
+    this.museumName = "Supreme Museum",
+    this.data = "12345",
+    this.time = "25th August 2073 | 9AM - 1PM",
+    this.entrants = 5,
+    this.souvenirs = 8,
+    this.price = 750,
+    this.warning =
+        "The entry into the museum shall happen when all the entrants are present",
+  }) : super(key: key);
 
+  final String name;
+  final String email;
+  final String museumName;
+  final String data;
+  final String time;
+  final int entrants;
+  final int souvenirs;
+  final int price;
+  final String warning;
   @override
   Widget build(BuildContext context) {
-    String name = "Robert Samuel";
-    String email = "robertsamuel@gmail.com";
-    String museumName = "Supreme Museum";
-    String data = "12345";
-    String time = "25th August 2073 | 9AM - 1PM";
-    int entrants = 5;
-    int souvenirs = 8;
-    String warning =
-        "The entry into the museum shall happen when all the entrants are present";
     void callCard() {
       showTicket(context, name, email, museumName, data, time, entrants,
           souvenirs, warning);
@@ -70,14 +86,19 @@ class TicketCard extends StatelessWidget {
                             Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("Supreme Museum",
+                                  Text(museumName,
                                       style: TextStyle(
+                                          fontFamily: 'Lato',
                                           fontSize: 15,
-                                          fontWeight: FontWeight.bold)),
+                                          fontWeight: FontWeight.w700)),
                                   Text("Central Road, Central Asia, Bagalore",
                                       style: TextStyle(fontSize: 11.5)),
                                 ]),
-                            Text("5 entrants | 6 souvenirs",
+                            Text(
+                                entrants.toString() +
+                                    " entrants | " +
+                                    souvenirs.toString() +
+                                    " souvenirs",
                                 style: TextStyle(fontSize: 12))
                           ],
                         ),
@@ -88,13 +109,27 @@ class TicketCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Column(children: [
-                              Text("25 Aug 2022",
-                                  style: TextStyle(fontSize: 12)),
-                              Text("9 AM - 1 PM",
-                                  style: TextStyle(fontSize: 12)),
-                            ]),
-                            Text("750", style: TextStyle(fontSize: 13))
+                            AutoSizeText(time,
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                minFontSize: 11,
+                                maxFontSize: 14,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    fontFamily: 'Lato',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                    color: Palette.black.withOpacity(0.6))),
+                            AutoSizeText("₹ " + price.toString(),
+                                maxLines: 1,
+                                minFontSize: 12,
+                                maxFontSize: 14,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    fontFamily: 'Lato',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                    color: Palette.black.withOpacity(0.6))),
                           ],
                         ),
                       ),

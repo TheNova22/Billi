@@ -116,7 +116,9 @@ class _IntroScreenState extends State<IntroScreen> {
                 width: 300,
                 height: 40,
                 title: 'Login',
-                onTap: () {},
+                onTap: () {
+
+                },
               ),
               const SizedBox(
                 height: 10,

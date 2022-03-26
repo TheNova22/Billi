@@ -1,19 +1,15 @@
-<<<<<<< HEAD
 import 'package:billi/modules/qr_scanner/qr_scanner.dart';
 import 'package:billi/modules/view_saved/view_saved.dart';
-=======
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:billi/configs/palette.dart';
 import 'package:billi/pages/splash_screen.dart';
 
-
 import 'package:billi/widgets/common_navigation_bar.dart';
 import 'package:billi/widgets/custom_text_button.dart';
 import 'package:billi/widgets/show_ticket.dart';
 import 'package:firebase_auth/firebase_auth.dart';
->>>>>>> d80b315b3a86935181517596f5d247ecb7fd8862
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -32,17 +28,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-<<<<<<< HEAD
-      home: ViewSaved(),
-=======
-      home: SplashScreen()
->>>>>>> d80b315b3a86935181517596f5d247ecb7fd8862
-    );
-      }
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: SplashScreen());
   }
-
-
+}

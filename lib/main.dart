@@ -62,7 +62,6 @@ class MyApp extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 }
-                print(FirebaseAuth.instance.currentUser!.uid);
                 if ((snapshot.data as DocumentSnapshot).exists) {
                   return MuseumHomePage();
                 }

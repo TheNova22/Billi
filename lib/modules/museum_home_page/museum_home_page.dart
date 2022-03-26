@@ -118,7 +118,7 @@ class MuseumHomePage extends StatefulWidget {
 class _MuseumHomePageState extends State<MuseumHomePage> {
   final auth = FirebaseAuth.instance;
   final store = FirebaseFirestore.instance;
-  List<double> data = [0, 0, 0, 0, 0, 0, 0];
+  List<double> data = [10, 3, 12, 1, 12, 11, 8];
   List<String> staff = [];
   String name = "";
   String address = "";

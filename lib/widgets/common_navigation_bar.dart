@@ -1,4 +1,5 @@
 import 'package:billi/configs/palette.dart';
+import 'package:billi/modules/account/account.dart';
 import 'package:billi/modules/user_home_page/user_home_page.dart';
 import 'package:billi/modules/user_log_in_page/user_log_in_page.dart';
 import 'package:billi/modules/user_ticket_page/user_ticket.dart';
@@ -31,6 +32,10 @@ Widget CommonBottomNavigationBar(int page, BuildContext context) {
         case 1:
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (_) => UserTicketPage()));
+          break;
+        case 2:
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => Account()));
       }
     },
     letIndexChange: (index) => true,

@@ -1,7 +1,6 @@
+import 'package:billi/configs/palette.dart';
 import 'package:billi/modules/assign_roles/assign_roles.dart';
 import 'package:flutter/material.dart';
-
-import '../../configs/palette.dart';
 
 class OperationWidget extends StatelessWidget {
   final IconData icon;
@@ -15,10 +14,6 @@ class OperationWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 0.0),
       child: InkWell(
-        onTap: () => {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const AssignRoles()))
-        },
         child: SizedBox(
           width: width / 3 - 10.0,
           child: Column(

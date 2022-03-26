@@ -70,7 +70,7 @@ class _UserHomeState extends State<UserHome> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        bottomNavigationBar: CommonBottomNavigationBar(0),
+        bottomNavigationBar: CommonBottomNavigationBar(0, context),
         appBar: AppBar(
           backgroundColor: Palette.white,
           elevation: 0,

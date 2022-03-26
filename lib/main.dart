@@ -1,5 +1,8 @@
+import 'package:billi/modules/museum_home_page/museum_home_page.dart';
 import 'package:billi/modules/model_check/model_ui.dart';
+
 import 'package:billi/modules/qr_scanner/qr_scanner.dart';
+import 'package:billi/modules/user_ticket_page/user_ticket.dart';
 import 'package:billi/modules/user_home_page/user_home_page.dart';
 import 'package:billi/modules/view_saved/view_saved.dart';
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
@@ -13,6 +16,7 @@ import 'package:billi/widgets/custom_text_button.dart';
 import 'package:billi/widgets/show_ticket.dart';
 import 'package:camera/camera.dart';
 import 'package:billi/modules/intro_screens/intro_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
@@ -44,20 +48,33 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // TODO : When signing out the sharedprefs thign should be changed.
-    // FirebaseAuth.instance.signOut();
-
     final stream = StreamBuilder(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (ctx, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting)
           return Center(child: CircularProgressIndicator());
         if (snapshot.hasData) {
-          return UserHome();
+          return FutureBuilder(
+              builder: (context, snapshot) {
+                if (snapshot.data == null) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                if ((snapshot.data as DocumentSnapshot).exists) {
+                  return MuseumHomePage();
+                }
+                return UserHome();
+              },
+              future: FirebaseFirestore.instance
+                  .collection('staff')
+                  .doc(FirebaseAuth.instance.currentUser!.uid)
+                  .get());
         }
         return IntroScreen();
       },
     );
+
     // TODO : Add offline check with sharedpref.. if offline, then just direct to
     final app = MaterialApp(
         title: 'Flutter Demo',

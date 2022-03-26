@@ -9,4 +9,6 @@ class Palette {
   static const black = Colors.black;
   static const green = Color(0xff7CBF25);
   static const gold = Color(0xffCB925B);
+  static const darkgreen = Color(0xff097100);
+  static const red = Color(0xffAD2929);
 }

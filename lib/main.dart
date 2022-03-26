@@ -1,3 +1,4 @@
+import 'package:billi/modules/museum_home_page/museum_home_page.dart';
 import 'package:billi/modules/qr_scanner/qr_scanner.dart';
 import 'package:billi/modules/view_saved/view_saved.dart';
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
@@ -32,6 +33,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: SplashScreen());
+        home: MuseumHomePage()
+        // SplashScreen()
+        );
   }
 }

@@ -2,6 +2,7 @@
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:billi/configs/palette.dart';
+import 'package:billi/modules/give_feedback/give_feedback.dart';
 import 'package:billi/widgets/show_ticket.dart';
 import 'package:flutter/material.dart';
 
@@ -18,10 +19,12 @@ class TicketCard extends StatelessWidget {
     this.price = 750,
     this.warning =
         "The entry into the museum shall happen when all the entrants are present",
+    this.f = false,
   }) : super(key: key);
 
   final String name;
   final String email;
+  final bool f;
   final String museumName;
   final String data;
   final String time;
@@ -38,108 +41,136 @@ class TicketCard extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),
-      child: GestureDetector(
-        onTap: callCard,
-        child: Container(
-          height: 230,
-          margin: EdgeInsets.only(top: 12, bottom: 12),
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              boxShadow: [
-                BoxShadow(
-                  color: Color.fromARGB(115, 107, 107, 107),
-                  offset: const Offset(
-                    0,
-                    5,
-                  ),
-                  blurRadius: 5.0,
-                  spreadRadius: 1.0,
-                ),
-              ]),
-          child: Column(
-            children: [
-              Expanded(
-                flex: 3,
-                child: ClipRRect(
+      child: Stack(
+        children: [
+          GestureDetector(
+            onTap: callCard,
+            child: Container(
+              height: 230,
+              margin: EdgeInsets.only(top: 12, bottom: 12),
+              decoration: BoxDecoration(
+                  color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(15)),
-                  child: Image.network(
-                    "https://www.albawaba.com/sites/default/files/styles/default/public/2020-04/shutterstock_482978608.jpg?itok=eS77PfeY",
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: 10, bottom: 10, left: 12, right: 12),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(museumName,
-                                      style: TextStyle(
-                                          fontFamily: 'Lato',
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w700)),
-                                  Text("Central Road, Central Asia, Bagalore",
-                                      style: TextStyle(fontSize: 11.5)),
-                                ]),
-                            Text(
-                                entrants.toString() +
-                                    " entrants | " +
-                                    souvenirs.toString() +
-                                    " souvenirs",
-                                style: TextStyle(fontSize: 12))
-                          ],
-                        ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromARGB(115, 107, 107, 107),
+                      offset: const Offset(
+                        0,
+                        5,
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            AutoSizeText(time,
-                                textAlign: TextAlign.center,
-                                maxLines: 2,
-                                minFontSize: 11,
-                                maxFontSize: 14,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontFamily: 'Lato',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700,
-                                    color: Palette.black.withOpacity(0.6))),
-                            AutoSizeText("₹ " + price.toString(),
-                                maxLines: 1,
-                                minFontSize: 12,
-                                maxFontSize: 14,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontFamily: 'Lato',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700,
-                                    color: Palette.black.withOpacity(0.6))),
-                          ],
-                        ),
+                      blurRadius: 5.0,
+                      spreadRadius: 1.0,
+                    ),
+                  ]),
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      child: Image.network(
+                        "https://www.albawaba.com/sites/default/files/styles/default/public/2020-04/shutterstock_482978608.jpg?itok=eS77PfeY",
+                        fit: BoxFit.cover,
+                        width: double.infinity,
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                  Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10, bottom: 10, left: 12, right: 12),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(museumName,
+                                          style: TextStyle(
+                                              fontFamily: 'Lato',
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w700)),
+                                      Text(
+                                          "Central Road, Central Asia, Bagalore",
+                                          style: TextStyle(fontSize: 11.5)),
+                                    ]),
+                                Text(
+                                    entrants.toString() +
+                                        " entrants | " +
+                                        souvenirs.toString() +
+                                        " souvenirs",
+                                    style: TextStyle(fontSize: 12))
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                AutoSizeText(time,
+                                    textAlign: TextAlign.center,
+                                    maxLines: 2,
+                                    minFontSize: 11,
+                                    maxFontSize: 14,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontFamily: 'Lato',
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w700,
+                                        color: Palette.black.withOpacity(0.6))),
+                                AutoSizeText("₹ " + price.toString(),
+                                    maxLines: 1,
+                                    minFontSize: 12,
+                                    maxFontSize: 14,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontFamily: 'Lato',
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w700,
+                                        color: Palette.black.withOpacity(0.6))),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+          if (f)
+            GestureDetector(
+                child: Container(
+                  width: 90,
+                  padding: EdgeInsets.all(8),
+                  child: AutoSizeText("Feedback",
+                      minFontSize: 12,
+                      maxFontSize: 14,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontFamily: 'Lato',
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                          color: Palette.black)),
+                  decoration: BoxDecoration(
+                      color: Palette.orange,
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  alignment: Alignment.topRight,
+                ),
+                onTap: () => showDialog(
+                    context: context,
+                    builder: (BuildContext context) => FeedbackPage())),
+        ],
       ),
     );
   }

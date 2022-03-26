@@ -1,3 +1,4 @@
+import 'package:billi/configs/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -41,35 +42,6 @@ final List<Widget> imageSliders = imgList
                     fit: BoxFit.contain,
                   ),
 
-                  // Positioned(
-                  //   bottom: 0.0,
-                  //   left: 0.0,
-                  //   right: 0.0,
-                  //   child: Container(
-                  //     decoration: const BoxDecoration(
-                  //       gradient: LinearGradient(
-                  //         colors: [
-                  //           Color.fromARGB(200, 0, 0, 0),
-                  //           Color.fromARGB(0, 0, 0, 0)
-                  //         ],
-                  //         begin: Alignment.bottomCenter,
-                  //         end: Alignment.topCenter,
-                  //       ),
-                  //     ),
-                  //     padding: const EdgeInsets.symmetric(
-                  //         vertical: 10.0, horizontal: 20.0),
-                  //     child: Text(
-                  //       'No. ${imgList.indexOf(item)} image',
-                  //       style: const TextStyle(
-                  //         color: Colors.white,
-                  //         fontSize: 20.0,
-                  //         fontWeight: FontWeight.bold,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  // ],
-                  // )
                 ),
               ),
             ),
@@ -88,32 +60,14 @@ final List<Widget> imageSliders = imgList
     .toList();
 
 class _IntroScreenState extends State<IntroScreen> {
-  // @override
-  // Widget build(BuildContext context) {
-  // return
-// CarouselSlider(
-//         items: items,
-//         options: CarouselOptions(
-//           height: 400,
-//           aspectRatio: 16 / 9,
-//           viewportFraction: 0.8,
-//           initialPage: 0,
-//           enableInfiniteScroll: true,
-//           reverse: false,
-//           autoPlay: true,
-//           autoPlayInterval: const Duration(seconds: 3),
-//           autoPlayAnimationDuration: const Duration(milliseconds: 800),
-//           autoPlayCurve: Curves.fastOutSlowIn,
-//           enlargeCenterPage: true,
-//           onPageChanged: callbackFunction,
-//           scrollDirection: Axis.horizontal,
-//         ));
+
   int _current = 0;
   final CarouselController _controller = CarouselController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Palette.white,
       body: SafeArea(
         child:
             Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
@@ -160,16 +114,16 @@ class _IntroScreenState extends State<IntroScreen> {
             children: [
               CustomTextButton(
                 width: 300,
-                height: 43,
+                height: 40,
                 title: 'Login',
                 onTap: () {},
               ),
               const SizedBox(
-                height: 7,
+                height: 10,
               ),
               CustomTextButton(
                 width: 300,
-                height: 43,
+                height: 40,
                 title: 'Register',
                 onTap: () {},
               ),

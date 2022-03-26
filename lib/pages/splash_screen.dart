@@ -6,6 +6,7 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:billi/configs/palette.dart';
+import 'package:billi/modules/intro_screens/intro_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,10 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-
+    Timer(
+        const Duration(seconds: 2),
+            () => Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const IntroScreen())));
     super.initState();
   }
 

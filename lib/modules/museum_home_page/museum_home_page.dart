@@ -2,13 +2,17 @@
 
 import 'dart:developer';
 
-import 'package:billi/modules/museum_home_page/operation_widget.dart';
+import '../assign_roles/assign_roles.dart';
+import '../qr_scanner/qr_scanner.dart';
+import 'components/operation_widget.dart';
 
 import '../../configs/palette.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+
+import 'pages/home_page.dart';
 
 class _BarChart extends StatelessWidget {
   const _BarChart({Key? key, required this.barGroupData}) : super(key: key);
@@ -389,17 +393,42 @@ class _MuseumHomePageState extends State<MuseumHomePage> {
                     ),
                     borderRadius: BorderRadius.circular(10.0)),
                 child: Wrap(
-                  children: const [
+                  children: [
                     // TODO: SHOULD ADD ROUTES
-                    OperationWidget(
-                        icon: Icons.person_add_alt_1_outlined,
-                        title: 'Assign roles'),
-                    OperationWidget(
-                        icon: Icons.qr_code_scanner, title: 'Scan ticket'),
+                    InkWell(
+                      onTap: () => {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AssignRoles()))
+                      },
+                      child: OperationWidget(
+                          icon: Icons.person_add_alt_1_outlined,
+                          title: 'Assign roles'),
+                    ),
+                    InkWell(
+                      onTap: () => {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => QRScanner()))
+                      },
+                      child: OperationWidget(
+                          icon: Icons.qr_code_scanner, title: 'Scan ticket'),
+                    ),
                     OperationWidget(
                         icon: Icons.attach_money, title: 'Update Prices'),
-                    OperationWidget(
-                        icon: Icons.checklist_rtl_rounded, title: 'Check Logs'),
+                    InkWell(
+                      onTap: () => {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LogPage()))
+                      },
+                      child: OperationWidget(
+                          icon: Icons.checklist_rtl_rounded,
+                          title: 'Check Logs'),
+                    ),
                     OperationWidget(
                         icon: Icons.workspace_premium, title: 'Apply Premium'),
                     OperationWidget(

@@ -3,6 +3,8 @@
 import 'dart:developer';
 import 'dart:ui';
 
+import 'package:billi/modules/museum_register_page/museum_register_page.dart';
+import 'package:billi/modules/staff_register_page/staff_register_page.dart';
 import 'package:billi/modules/user_register_page/user_register_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
@@ -201,12 +203,11 @@ class _UserLoginPageState extends State<UserLoginPage> {
                             ),
                           ),
                           onTap: () {
-                            // TODO
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => StaffRegisterPage()),
-                            // );
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => StaffRegisterPage()),
+                            );
                           },
                         )),
                         TextSpan(
@@ -227,11 +228,11 @@ class _UserLoginPageState extends State<UserLoginPage> {
                           ),
                           onTap: () {
                             // TODO
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => MuseumRegisterPage()),
-                            // );
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MuseumRegisterPage()),
+                            );
                           },
                         ))
                       ]),

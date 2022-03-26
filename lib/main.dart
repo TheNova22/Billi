@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO : When signing out the sharedprefs thign should be changed.
-    FirebaseAuth.instance.signOut();
+    // FirebaseAuth.instance.signOut();
 
     final stream = StreamBuilder(
       stream: FirebaseAuth.instance.authStateChanges(),

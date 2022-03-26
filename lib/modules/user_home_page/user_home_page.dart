@@ -1,5 +1,6 @@
 import 'package:billi/configs/palette.dart';
 import 'package:billi/widgets/common_navigation_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class UserHome extends StatefulWidget {
@@ -10,8 +11,62 @@ class UserHome extends StatefulWidget {
 }
 
 class _UserHomeState extends State<UserHome> {
+  static String? get projectId => null;
   @override
   Widget build(BuildContext context) {
+    final museums = StreamBuilder(
+      stream: FirebaseFirestore.instance.collection('museums').snapshots(),
+      builder: (ctx, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        if (snapshot.hasData) {
+          final museumDoc = (snapshot.data as QuerySnapshot).docs;
+          return Center(
+            child: ListView.builder(itemBuilder: (ctx, index) {
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 8.0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: 230,
+                  margin: const EdgeInsets.only(bottom: 4),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Card(
+                      child: Column(
+                        children: [
+                          _bgPicture(museumDoc[index]['imageUrls'][0]),
+                          Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                leftSection(museumDoc[index]['name'],
+                                    museumDoc[index]['address']),
+                                rightSection(museumDoc[index]['rating'],
+                                    museumDoc[index]['capacity'])
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            }),
+          );
+        } else {
+          return CircularProgressIndicator();
+        }
+      },
+    );
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -108,46 +163,47 @@ class _UserHomeState extends State<UserHome> {
                   ),
                 ),
                 Expanded(
-                  child: SizedBox(
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 3,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 8.0),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              height: 230,
-                              margin: const EdgeInsets.only(bottom: 4),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(18),
-                              ),
-                              child: GestureDetector(
-                                onTap: () {},
-                                child: Card(
-                                  child: Column(
-                                    children: [
-                                      _bgPicture(index),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            leftSection(index),
-                                            rightSection(index)
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }),
-                  ),
+                  child: museums,
+                  // child: SizedBox(
+                  //   child: ListView.builder(
+                  //       shrinkWrap: true,
+                  //       itemCount: 3,
+                  //       itemBuilder: (BuildContext context, int index) {
+                  //         return Padding(
+                  //           padding: const EdgeInsets.symmetric(
+                  //               horizontal: 20, vertical: 8.0),
+                  //           child: Container(
+                  //             width: MediaQuery.of(context).size.width * 0.8,
+                  //             height: 230,
+                  //             margin: const EdgeInsets.only(bottom: 4),
+                  //             decoration: BoxDecoration(
+                  //               borderRadius: BorderRadius.circular(18),
+                  //             ),
+                  //             child: GestureDetector(
+                  //               onTap: () {},
+                  //               child: Card(
+                  //                 child: Column(
+                  //                   children: [
+                  //                     _bgPicture(index),
+                  //                     Padding(
+                  //                       padding: const EdgeInsets.all(8),
+                  //                       child: Row(
+                  //                         mainAxisAlignment:
+                  //                             MainAxisAlignment.spaceBetween,
+                  //                         children: [
+                  //                           leftSection(index),
+                  //                           rightSection(index)
+                  //                         ],
+                  //                       ),
+                  //                     )
+                  //                   ],
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         );
+                  //       }),
+                  // ),
                 ),
               ],
             ),
@@ -157,34 +213,31 @@ class _UserHomeState extends State<UserHome> {
     );
   }
 
-  Widget _bgPicture(int index) {
+  Widget _bgPicture(String url) {
     return Container(
       width: double.maxFinite,
       height: 150,
       decoration: BoxDecoration(
-          image: const DecorationImage(
-              image: NetworkImage(
-                "https://imagesvc.meredithcorp.io/v3/mm/image?q=60&c=sc&poi=face&w=1600&h=800&url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F28%2F2020%2F03%2Fgallery-uffizi-florence-italy-ONLINEMUSE0320.jpg",
-              ),
-              fit: BoxFit.cover),
+          image: DecorationImage(image: NetworkImage(url), fit: BoxFit.cover),
           borderRadius: BorderRadius.circular(8)),
     );
   }
 
-  Widget leftSection(int index) {
+  Widget leftSection(String museumName, String museumAddress) {
     return SizedBox(
       height: 55,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: const [
+        children: [
           Text(
-            "Supreme",
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.w800),
+            museumName,
+            style: const TextStyle(
+                color: Colors.black, fontWeight: FontWeight.w800),
           ),
           Text(
-            "Central Road, Central Asia, Bangalore",
-            style: TextStyle(color: Colors.grey, fontSize: 12),
+            museumAddress,
+            style: const TextStyle(color: Colors.grey, fontSize: 12),
           ),
         ],
       ),
@@ -192,7 +245,7 @@ class _UserHomeState extends State<UserHome> {
   }
 }
 
-Widget rightSection(int index) {
+Widget rightSection(double rating, int cost) {
   return SizedBox(
     height: 50,
     child: Column(
@@ -207,9 +260,9 @@ Widget rightSection(int index) {
           child: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
+              children: [
                 Text(
-                  '4.3',
+                  "${(rating.round())}",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 ),
                 Icon(
@@ -221,8 +274,8 @@ Widget rightSection(int index) {
             ),
           ),
         ),
-        const Text(
-          "₹250 for one",
+        Text(
+          "Rs. ${cost} For one",
           style: TextStyle(color: Colors.grey, fontSize: 12),
         ),
       ],

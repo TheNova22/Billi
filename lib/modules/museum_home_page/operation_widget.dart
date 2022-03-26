@@ -1,3 +1,4 @@
+import 'package:billi/modules/assign_roles/assign_roles.dart';
 import 'package:flutter/material.dart';
 
 import '../../configs/palette.dart';
@@ -13,22 +14,28 @@ class OperationWidget extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 0.0),
-      child: SizedBox(
-        width: width / 3 - 10.0,
-        child: Column(
-          children: [
-            Icon(
-              icon,
-              // Icons.person_add_alt_1_outlined,
-              color: Palette.orange,
-              size: 35.0,
-            ),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
-            ),
-          ],
+      child: InkWell(
+        onTap: () => {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const AssignRoles()))
+        },
+        child: SizedBox(
+          width: width / 3 - 10.0,
+          child: Column(
+            children: [
+              Icon(
+                icon,
+                // Icons.person_add_alt_1_outlined,
+                color: Palette.orange,
+                size: 35.0,
+              ),
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
+              ),
+            ],
+          ),
         ),
       ),
     );

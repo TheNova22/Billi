@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors
 
+import 'dart:developer';
+
 import 'package:billi/modules/museum_home_page/operation_widget.dart';
 
 import '../../configs/palette.dart';
@@ -118,6 +120,9 @@ class _MuseumHomePageState extends State<MuseumHomePage> {
   String address = "";
   String imgUrl = "";
   int customersArrival = 0;
+  num price =
+      0; // IN FUTURE BETTER TO ADD A FIELD "PRICE" IN MUSUEM DB , TEMP CALCULATING
+  int souvenirs = 32;
   Future getDetails() async {
     List<String> transactions = [];
     List<String> tempStaff = [];
@@ -125,6 +130,8 @@ class _MuseumHomePageState extends State<MuseumHomePage> {
       transactions = List<String>.from(value.data()!["transactions"] as List);
       setState(() {
         tempStaff = List<String>.from(value.data()!["staff"] as List);
+        // log(value.data()!["souvenirs"]);
+        // souvenirs = value.data()!["souvenirs"].length();
         address = value.data()!["address"] +
             " , " +
             value.data()!["city"] +
@@ -152,10 +159,14 @@ class _MuseumHomePageState extends State<MuseumHomePage> {
           .get()
           .then((value) {
         int timestamp = value.data()!['timestamp'];
+        setState(() {
+          price += value.data()!["price"];
+        });
         DateTime date = DateTime.fromMicrosecondsSinceEpoch(timestamp);
         int diff = DateTime.now().difference(date).inDays;
         if (diff >= 7) {
           flag = true;
+
           return;
         } else {
           data[diff] += value.data()!["people"];
@@ -283,7 +294,8 @@ class _MuseumHomePageState extends State<MuseumHomePage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        '1500',
+                        // '1500',
+                        price.toString(),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 25.0,
@@ -311,7 +323,8 @@ class _MuseumHomePageState extends State<MuseumHomePage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        '32',
+                        // '32', // HARDCODED FOR NOW
+                        souvenirs.toString(),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 25.0,

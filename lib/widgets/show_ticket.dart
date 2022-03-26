@@ -6,6 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'dart:math' as math;
 
+// String name = "Robert Samuel";
+// String email = "robertsamuel@gmail.com";
+// String museumName = "Supreme Museum";
+// String data = "12345";
+// String time = "25th August 2073 | 9AM - 1PM";
+// int entrants = 5;
+// int souvenirs = 8;
+// String warning =
+//     "The entry into the museum shall happen when all the entrants are present";
 void showTicket(
     BuildContext context,
     String name,

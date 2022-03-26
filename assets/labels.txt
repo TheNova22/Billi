@@ -1,0 +1,4 @@
+0 Taj Mahal
+1 Virupaksha Temple
+2 Gol Gumbaz
+3 Mysore Palace
